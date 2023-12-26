@@ -48,6 +48,7 @@ public class CommunityService {
 
 
 
+
     public void deleteCommunity(Community community) {
         communityRepository.delete(community);
     }
