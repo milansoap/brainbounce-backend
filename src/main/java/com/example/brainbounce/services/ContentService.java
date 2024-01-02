@@ -42,6 +42,20 @@ public class ContentService {
         contentRepository.deleteById(id);
     }
 
+    public void likeContentById(Long id) {
+        Content contentToLike = contentRepository.findById(id)
+                .orElseThrow();
+        contentToLike.setNumOfLikes(contentToLike.getNumOfLikes() + 1);
+        contentRepository.save(contentToLike);
+    }
+
+    public void dislikeContentById(Long id) {
+        Content contentToLike = contentRepository.findById(id)
+                .orElseThrow();
+        contentToLike.setNumOfLikes(contentToLike.getNumOfLikes() - 1);
+        contentRepository.save(contentToLike);
+    }
+
     public List<Content> findContentsByCommunityIdAndCreatedBy(Long communityId, Long createdBy) {
         return contentRepository.findByCommunityIdAndCreatedBy(communityId, createdBy);
     }

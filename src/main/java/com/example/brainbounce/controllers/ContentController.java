@@ -59,6 +59,20 @@ public class ContentController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/{id}/like")
+    public ResponseEntity<Void> likeContent(@PathVariable Long id) {
+        log.info("Liking content with id {}", id);
+        contentService.likeContentById(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}/dislike")
+    public ResponseEntity<Void> dislikeContent(@PathVariable Long id) {
+        log.info("Disliking content with id {}", id);
+        contentService.dislikeContentById(id);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/community/{communityId}")
     public ResponseEntity<List<Content>> getContentsByCommunityId(@PathVariable Long communityId) {
         List<Content> contents = contentService.findContentsByCommunityId(communityId);
